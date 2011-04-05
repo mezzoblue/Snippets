@@ -58,9 +58,10 @@
 	
 								// find the custom field value
 								$customFieldValue = get_post_meta($data->ID, $customField, 1);
+								$current = is_page($data->ID) ? ' class="current_page_item"' : '';
 	
 								// dish up the results
-								echo "<li><a href=\"" . get_page_link($data->ID) . "\">" . $customFieldValue . "</a></li>";
+								echo "<li" . $current . "><a href=\"" . get_page_link($data->ID) . "\">" . $customFieldValue . "</a></li>";
 							}
 
 						

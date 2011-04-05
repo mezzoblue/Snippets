@@ -8,3 +8,12 @@ http://mezzoblue.com/
 A set of reusable snippets from my personal collection, mostly for my own reference.
 
 Perhaps you'll find something useful or interesting. A lot of the code could be cleaned up and improved in a lot of ways, don't go looking for stellar coding practices in here.
+
+Contents:
+
+
+PHP
+	|-- form-to-email: generic configurable form that posts to email
+
+Wordpress
+	|-- subnav-post-keys.php: create a nav listing using a custom field as the page title

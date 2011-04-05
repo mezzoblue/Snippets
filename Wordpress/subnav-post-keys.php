@@ -4,7 +4,7 @@
 	------------------------------------------------------------------------------------
 	subnav-post-keys.php
 
-	Create a page listing using a custom field as the page title.
+	Create a nav listing using a custom field as the page title.
 	Only intended to work on a single parent page, could be generalized to work anywhere
 	------------------------------------------------------------------------------------
 	

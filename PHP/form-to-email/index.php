@@ -4,7 +4,7 @@
 	---------------------------------------------------------------------------------------
 	form-to-email
 
-	Generic reusable form that sends an email containing submitted form fields
+	Generic configurable form that sends an email containing submitted form fields
 	Originally designed for a Contact Form, can be re-purposed for any general type of form
 	---------------------------------------------------------------------------------------
 	

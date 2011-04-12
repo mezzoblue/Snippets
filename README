@@ -12,10 +12,13 @@ Perhaps you'll find something useful or interesting. A lot of the code could be 
 Contents:
 
 
+Javascript
+	|-- smooth-random-int: simple function to return non-repeating random integers (available as PHP too)
+
 PHP
 	|-- form-to-email: generic configurable form that posts to email
 	|-- mysql-helper: simple scripts for controlling database creation with PHP
-	|-- smooth-random-int: simple function to return non-repeating random integers
+	|-- smooth-random-int: simple function to return non-repeating random integers (available as Javascript too)
 
 Wordpress
 	|-- subnav-post-keys.php: create a nav listing using a custom field as the page title

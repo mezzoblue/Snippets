@@ -22,52 +22,52 @@
 
 
 
-					<ul id="sub-nav">
-					<?php
+		<ul id="sub-nav">
+		<?php
 
-						// get parent regardless whether we're on a second or third-level page
-						if(empty($wp_query->post->post_parent)) { 
-							$parentPost = $wp_query->post->ID; 
-						} else { 
-							$parentPost = $wp_query->post->post_parent; 
-						}
+			// get parent regardless whether we're on a second or third-level page
+			if(empty($wp_query->post->post_parent)) { 
+				$parentPost = $wp_query->post->ID; 
+			} else { 
+				$parentPost = $wp_query->post->post_parent; 
+			}
 
-						// place this on both the selected post and any child pages
-						if (is_page($postID) || ($parent == $postID)){
+			// place this on both the selected post and any child pages
+			if (is_page($postID) || ($parent == $postID)){
 
-							// get a listing of pages underneath selected parent
-							$args = array(
-								'child_of'     => $postID,
-								'depth'        => 0,
-								'show_date'    => '',
-								'date_format'  => get_option('date_format'),
-								'exclude'      => '',
-								'include'      => '',
-								'title_li'     => '',
-								'echo'         => 0,
-								'authors'      => '',
-								'sort_column'  => 'menu_order, post_title',
-								'link_before'  => '',
-								'link_after'   => '',
-								'walker' => '' );
-							$pages = get_pages($args);
-	
+				// get a listing of pages underneath selected parent
+				$args = array(
+					'child_of'     => $postID,
+					'depth'        => 0,
+					'show_date'    => '',
+					'date_format'  => get_option('date_format'),
+					'exclude'      => '',
+					'include'      => '',
+					'title_li'     => '',
+					'echo'         => 0,
+					'authors'      => '',
+					'sort_column'  => 'menu_order, post_title',
+					'link_before'  => '',
+					'link_after'   => '',
+					'walker' => '' );
+				$pages = get_pages($args);
 
-							// loop through resulting page list							
-							foreach($pages as $key => $data) {
-	
-								// find the custom field value
-								$customFieldValue = get_post_meta($data->ID, $customField, 1);
-								$current = is_page($data->ID) ? ' class="current_page_item"' : '';
-	
-								// dish up the results
-								echo "<li" . $current . "><a href=\"" . get_page_link($data->ID) . "\">" . $customFieldValue . "</a></li>";
-							}
 
-						
-						}
-					?>
-					</ul>
+				// loop through resulting page list							
+				foreach($pages as $key => $data) {
+
+					// find the custom field value
+					$customFieldValue = get_post_meta($data->ID, $customField, 1);
+					$current = is_page($data->ID) ? ' class="current_page_item"' : '';
+
+					// dish up the results
+					echo "<li" . $current . "><a href=\"" . get_page_link($data->ID) . "\">" . $customFieldValue . "</a></li>";
+				}
+
+			
+			}
+		?>
+		</ul>
 
 
 

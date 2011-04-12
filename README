@@ -15,6 +15,7 @@ Contents:
 PHP
 	|-- form-to-email: generic configurable form that posts to email
 	|-- mysql-helper: simple scripts for controlling database creation with PHP
+	|-- smooth-random-int: simple function to return non-repeating random integers
 
 Wordpress
 	|-- subnav-post-keys.php: create a nav listing using a custom field as the page title

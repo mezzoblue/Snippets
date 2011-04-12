@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html> 
+ 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>smooth-random-int</title> 
+	<meta name="robots" content="all"> 
+ 
+	<script type="text/javascript" src="smooth-random-int.js"></script> 
+
+</head> 
+ 
+ 
+<body> 
+ 
+<header> 
+	<h1>smooth-random-int</h1>
+</header> 
+
+<p>Your non-repeating random numbers between 1 and 10 are:</p>
+<ul id="random">
+
+</ul>
+ 
+
+<script type="text/javascript">
+
+	var par = document.getElementById("random");
+	
+	for (i = 0; i < 100; i++) {
+		var child = document.createElement("li");
+		child.appendChild(document.createTextNode(String(smoothRandomInt(1, 10))));
+		par.appendChild(child);
+	}
+
+</script>
+
+</body> 
+</html>

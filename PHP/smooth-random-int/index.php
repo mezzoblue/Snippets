@@ -4,6 +4,7 @@
 	// return a random integer between $min and $max but make sure it's a different number than the previous result
 	//
 	// (useful for image rotators etc. where you don't want to repeat the previous image)
+	// (see ../Javascript/smooth-random-int for the Javascript equivalent)
 	//
 	function smoothRandomInt($min, $max) {
 

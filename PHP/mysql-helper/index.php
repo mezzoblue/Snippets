@@ -36,101 +36,101 @@
 
 
 		
-		// create a new database
-		if (createDB($connection, $config["db"]["name"]) == "") {
+	// create a new database
+	if (createDB($connection, $config["db"]["name"]) == "") {
 
-			// select this database
-			if (mysql_select_db($config["db"]["name"])) {
-
-
-				//
-				// initial setup
-				//
-
-				// get some information about the database environment
-				echo "<h2>Displaying databases</h2>";
-				listDBs($connection);
-
-				// create tables
-				foreach ($db_schema as $table => $keys) {
-					$tableResult = addTable($connection, $table, $keys);
-					// if there's an error, show it
-					if ($tableResult) echo $tableResult;
-				}
-
-				// populate tables
-				foreach ($db_data as $table => $items) {
-					$tableResult = populateTable($connection, $table, $items);
-					// if there's an error, show it
-					if ($tableResult) echo $tableResult;
-				}
-
-				// display the tables on screen so we can see they were created
-				echo "<h2>Showing script-created tables</h2>";
-				if ($tables = getTableList($connection, $config["db"]["name"])) {
-					foreach ($tables as $id => $table) {
-						printTable($connection, $table);
-					}
-				}
+		// select this database
+		if (mysql_select_db($config["db"]["name"])) {
 
 
-				//
-				// export and kill database
-				//
+			//
+			// initial setup
+			//
 
-				// dump this database to a file
-				exportDB($connection, $config["db"]["name"], $config["db"]["backupFile"]);
+			// get some information about the database environment
+			echo "<h2>Displaying databases</h2>";
+			listDBTables($connection);
 
-				// remove the tables we just created
-				foreach ($db_schema as $table => $keys) {
-					$tableResult = deleteTable($connection, $table);
-					// if there's an error, show it
-					if ($tableResult) echo $tableResult;
-				}
-
-				// display the tables on screen so we can see they were dumped
-				echo "<h2>Showing tables after database export and table dump</h2>";
-				if ($tables = getTableList($connection, $config["db"]["name"])) {
-					foreach ($tables as $id => $table) {
-						printTable($connection, $table);
-					}
-				} else {
-					echo "<br><br>No tables found.<br><br>";
-				}
-
-
-
-				//
-				// import database from file and show it on screen
-				//
-
-				echo "<h2>Showing tables after file import</h2>";
-				$importResult = importDB($connection, $config["db"]["name"], $config["db"]["backupFile"]);
+			// create tables
+			foreach ($db_schema as $table => $keys) {
+				$tableResult = addTable($connection, $table, $keys);
 				// if there's an error, show it
-				if ($importResult) echo $importResult;
+				if ($tableResult) echo $tableResult;
+			}
 
-				// display the tables on screen so we can see they were dumped
-				if ($tables = getTableList($connection, $config["db"]["name"])) {
-					foreach ($tables as $id => $table) {
-						printTable($connection, $table);
-					}
-				} else {
-					echo "<br><br>No tables found.<br><br>";
+			// populate tables
+			foreach ($db_data as $table => $items) {
+				$tableResult = populateTable($connection, $table, $items);
+				// if there's an error, show it
+				if ($tableResult) echo $tableResult;
+			}
+
+			// display the tables on screen so we can see they were created
+			echo "<h2>Showing script-created tables</h2>";
+			if ($tables = getTableList($connection, $config["db"]["name"])) {
+				foreach ($tables as $id => $table) {
+					printTable($connection, $table);
 				}
-
-
-
-			} else {
-				echo "Error selecting database: " . mysql_error();
 			}
 
 
+			//
+			// export and kill database
+			//
+
+			// dump this database to a file
+			exportDB($connection, $config["db"]["name"], $config["db"]["backupFile"]);
+
+			// remove the tables we just created
+			foreach ($db_schema as $table => $keys) {
+				$tableResult = deleteTable($connection, $table);
+				// if there's an error, show it
+				if ($tableResult) echo $tableResult;
+			}
+
+			// display the tables on screen so we can see they were dumped
+			echo "<h2>Showing tables after database export and table dump</h2>";
+			if ($tables = getTableList($connection, $config["db"]["name"])) {
+				foreach ($tables as $id => $table) {
+					printTable($connection, $table);
+				}
+			} else {
+				echo "<br><br>No tables found.<br><br>";
+			}
+
+
+
+			//
+			// import database from file and show it on screen
+			//
+
+			echo "<h2>Showing tables after file import</h2>";
+			$importResult = importDB($connection, $config["db"]["name"], $config["db"]["backupFile"]);
+			// if there's an error, show it
+			if ($importResult) echo $importResult;
+
+			// display the tables on screen so we can see they were dumped
+			if ($tables = getTableList($connection, $config["db"]["name"])) {
+				foreach ($tables as $id => $table) {
+					printTable($connection, $table);
+				}
+			} else {
+				echo "<br><br>No tables found.<br><br>";
+			}
+
+
+
 		} else {
-
-			// drop the database
-			deleteDB($connection, $config["db"]["name"]);
-
+			echo "Error selecting database: " . mysql_error();
 		}
+
+
+	} else {
+
+		// drop the database
+		deleteDB($connection, $config["db"]["name"]);
+
+	}
 
 
 	// disconnect from db server	

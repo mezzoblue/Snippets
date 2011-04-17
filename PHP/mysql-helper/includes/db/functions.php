@@ -112,18 +112,34 @@
 		}
 
 	}
-	
+
 
 	// list all databases on the host
 	// (assumes open connection)
 	function listDBs($connection) {
+
+		$dbs = Array();
+	
+		$db_list = mysql_list_dbs($connection);
+		while ($row = mysql_fetch_object($db_list)) {
+			array_push($dbs, $row->Database);
+		}
+		if (count($dbs)) {
+			return $dbs;
+		}
+	}
+	
+
+	// print out all databases on the host
+	// (assumes open connection)
+	function listDBTables($connection) {
 	
 		$db_list = mysql_list_dbs($connection);
 		while ($row = mysql_fetch_object($db_list)) {
 	
 			echo "<br>Database name: " . $row->Database . "<br>";
 	
-			// list all rows from current database
+			// list all tables from current database
 			mysql_select_db($row->Database);
 			$sql = "SHOW TABLES FROM " . $row->Database;
 			$result = mysql_query($sql);

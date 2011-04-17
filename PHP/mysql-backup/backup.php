@@ -81,7 +81,7 @@
 
 
 
-	// list all databases on the host
+	// create list of all databases on the host
 	// (assumes open connection)
 	function listDBs($connection) {
 
@@ -110,13 +110,43 @@
 
 	$dbs = listDBs($connection);
 
-	$exported = false;
+	$backupResult = false;
 	if (isset($_POST["export"])) {
 		// dump this database to a file
 		exportDB($connection, $_POST["db"], $_POST["filename"]);
-		$exported = true;
+		$backupResult = true;
 	}
 
+
+	if (isset($_POST["download"])) {
+
+		// security check: does the file exist? Is it something other than a .php file? Then okay.
+		// otherwise: DIE.
+		// adapted from http://safalra.com/programming/php/prevent-hotlinking/
+		if (
+			(!$file = realpath($_POST["filename"])) || 
+			(substr($file, -4) == '.php')
+			) {
+				//header('HTTP/1.0 404 Not Found');
+				echo "no dice";
+				exit();
+		}
+		
+		if (file_exists($_POST["filename"])) {
+
+			$size = filesize($_POST["filename"]);
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename=' . $_POST["filename"]);
+			header('Content-Length: ' . $size);
+			readfile($_POST["filename"]);
+			unlink($_POST["filename"]);
+
+		} else {
+			$backupResult = "Error saving file to disk.";
+		}
+
+
+	}
 
 	// disconnect from db server	
 	mysql_close($connection);
@@ -136,6 +166,7 @@
 	<meta name="robots" content="all">
 
 	<link rel="stylesheet" href="../../common-ui/css/default.css" media="screen">
+	<script src="../../common-ui/script/custom-forms.js"></script>
 </head>
 <body>
 
@@ -147,7 +178,7 @@
 	</header>
 
 <?php
-	if (!$exported) {
+	if (!$backupResult) {
 ?>
 	<p>This script will backup the MySQL database of your choice to a flat file.</p>
 
@@ -155,27 +186,39 @@
 		<div>
 			<input type="hidden" name="export" value="true">
 			<label>Select a database:</label>
-			<select name="db">
-		<?php
-			foreach ($dbs as $key => $name) {
-				echo "<option value=\"$name\">$name</option>";
-			}
-		?>
-			</select>
+			<div class="form-styled">
+				<select name="db" class="styled">
+			<?php
+				foreach ($dbs as $key => $name) {
+					echo "<option value=\"$name\">$name</option>";
+				}
+			?>
+				</select>
+			</div>
 		</div>
 		<div>
 			<label>Filename:</label>
 			<input name="filename" value="<?php echo $config["db"]["backupFile"]; ?>" type="text">
 		</div>
 		<div>
-<!-- 			<button type="submit">Save to Disk</button> -->
-			<button type="submit">Download</button>
+			<button type="submit" name="save">Save to Disk</button>
+			<button type="submit" name="download">Download</button>
 		</div>
 	</form>
+
 <?php
+	} else if (strlen($backupResult) > 1) {
+?>
+
+	<p>Something went wrong.</p>
+	<p><?php echo $backupResult; ?></p>
+
+<?	
 	} else {
+
 ?>
 	<p>Exported!</p>
+
 <?php
 	}
 ?>

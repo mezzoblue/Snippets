@@ -17,7 +17,8 @@ Javascript
 
 PHP
 	|-- form-to-email: generic configurable form that posts to email
-	|-- mysql-helper: simple scripts for controlling database creation with PHP
+	|-- mysql-backup: backup and restore a MySQL database to a flat file
+	|-- mysql-helper: functions for controlling database creation with PHP
 	|-- smooth-random-int: simple function to return non-repeating random integers (available as Javascript too)
 
 Wordpress

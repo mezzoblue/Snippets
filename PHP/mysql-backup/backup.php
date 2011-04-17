@@ -200,8 +200,8 @@
 			<label>Filename:</label>
 			<input name="filename" value="<?php echo $config["db"]["backupFile"]; ?>" type="text">
 		</div>
-		<div>
-			<button type="submit" name="save">Save to Disk</button>
+		<div class="buttons">
+			<button type="submit" name="save">Save on Server</button>
 			<button type="submit" name="download">Download</button>
 		</div>
 	</form>
@@ -210,7 +210,7 @@
 	} else if (strlen($backupResult) > 1) {
 ?>
 
-	<p>Something went wrong.</p>
+	<p>Something went wrong:</p>
 	<p><?php echo $backupResult; ?></p>
 
 <?	

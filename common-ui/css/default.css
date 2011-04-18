@@ -232,9 +232,11 @@ input[type="text"] {
 		outline-color: rgba(176, 196, 211, 0.2);
 	}
 select[size="5"] {
+	font: 12px sans-serif;
 	width: 61%;
 	border: none;
 	vertical-align: top;
+	padding: 3px;
 	
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;

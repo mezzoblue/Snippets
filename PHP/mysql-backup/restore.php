@@ -20,14 +20,29 @@
 	);
 
 
+	// create a new database
+	// (assumes open connection)
+ 	function createDB($connection, $db) {
+		$sql = "CREATE DATABASE $db";
+		if (!mysql_query($sql, $connection)) {
+		    return 'Error creating database: ' . mysql_error();
+		}
+ 	}
+
+
 	// import a flat file MySQL dump
 	// (assumes open connection)
-	function importDB($connection, $name, $file) {
+	function importDB($connection, $name, $file, $dbs) {
 
 		// initialize
 		$returnValue = "";
 		$sql = "";
+
+		if (!in_array($name, $dbs)) {
+			createDB($connection, $name);
+		}
 		mysql_select_db($name, $connection);
+
 
 		// start reading in the file, if it exists
 		$lines = file($file);
@@ -37,7 +52,14 @@
 				// if we've found a semi-colon it's time to execute
 				if (strpos($sql, ";")) {
 					if (!mysql_query($sql, $connection)) {
-				    $returnValue .= mysql_error();
+						// rule out DROP calls to nonexistant tables
+
+						$error = mysql_error();
+
+						if (!stristr($error, "Unknown table")) {
+					    $returnValue .= $error;
+					  }
+
 					}
 			 		$sql = "";   
 				}
@@ -84,31 +106,31 @@
 	// only bother if there's a file coming with the submit
 	if (isset($_POST["import"])) {
 
-		print_r($_FILES);
-		if (isset($_FILES["importFile"])) {
+		if (isset($_FILES["importFile"]["tmp_name"]) && (strlen($_FILES["importFile"]["tmp_name"]) > 0)) {
+
 			$file = $_FILES["importFile"]["tmp_name"];
-			echo $file;
-		}
 
-		// set name based on whether existing or new values have been defined.
-		// favour new to avoid nuking existing dbs where possible
-		if (isset($_POST["db-existing"])) {
-			$dbName = $_POST["db-existing"];
-		}
-		if (isset($_POST["db-new"])) {
-			if (strlen($_POST["db-new"])) {
-				$dbName = $_POST["db-new"];
+			// set name based on whether existing or new values have been defined.
+			// favour new to avoid nuking existing dbs where possible
+			if (isset($_POST["db-existing"])) {
+				$dbName = $_POST["db-existing"];
 			}
-		}
-
-		if (isset($file) && isset($dbName)) {
-			if (!($restoreResult = importDB($connection, $dbName, $file))) {
-				$restoreResult = true;
+			if (isset($_POST["db-new"])) {
+				if (strlen($_POST["db-new"])) {
+					$dbName = $_POST["db-new"];
+				}
 			}
-		} else {
-			$restoreResult = "Error processing file.";
-		}			
+	
+			// if we've got a file and a database name, import it
+			if (isset($file) && isset($dbName)) {
+				if (!($restoreResult = importDB($connection, $dbName, $file, $dbs))) {
+					$restoreResult = true;
+				}
+			} else {
+				$restoreResult = "Can't use specified filename/database.";
+			}			
 
+		}
 	}
 
 
@@ -146,7 +168,7 @@
 ?>
 	<p>This script will import a previously backed-up MySQL database file to the server.</p>
 
-	<form method="post" action="./restore.php">
+	<form method="post" action="./restore.php" enctype="multipart/form-data">
 		<div>
 			<input type="hidden" name="import" value="true">
 			<label>Select a file:</label>

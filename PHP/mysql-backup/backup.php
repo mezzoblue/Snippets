@@ -217,7 +217,7 @@
 	} else {
 
 ?>
-	<p>Exported!</p>
+	<p>Database saved.</p>
 
 <?php
 	}

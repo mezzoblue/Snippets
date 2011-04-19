@@ -152,7 +152,7 @@
 	if (!$restoreResult) {
 ?>
 	<p>This script will import a previously backed-up MySQL database file to the server.</p>
-	<p>Warning: this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
+	<p><strong>Warning:</strong> this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
 
 	<form method="post" action="./restore.php" enctype="multipart/form-data">
 		<div>
@@ -199,6 +199,7 @@
 	}
 ?>
 
+	<p><strong>Warning:</strong> this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
 
 </div>
 

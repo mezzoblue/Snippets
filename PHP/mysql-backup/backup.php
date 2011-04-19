@@ -167,7 +167,6 @@
 	if (!$backupResult) {
 ?>
 	<p>This script will backup the MySQL database of your choice to a flat file.</p>
-	<p>Warning: this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
 
 	<form method="post" action="./backup.php">
 		<div>
@@ -210,6 +209,7 @@
 	}
 ?>
 
+	<p><strong>Warning:</strong> this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
 
 </div>
 

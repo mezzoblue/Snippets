@@ -1,0 +1,32 @@
+Wordpress Server Transfer Tools
+Copyright (c) 2011, Dave Shea
+All rights reserved.
+
+http://mezzoblue.com/
+
+
+If you're like me, you've tried moving a Wordpress installation via the built-in Import/Export utilities and found them rather lacking.
+
+These scripts are meant to facilitate easier Wordpress server transfers. There are three main utilities present:
+
+
+	backup.php
+	|-- save a MySQL database to a flat file
+
+	restore.php
+	|-- recreate the original database from a saved flat file
+
+	create.php
+	|-- create an empty MySQL database without mucking around in PHPMyAdmin
+
+
+Note that before using them, as in all Wordpress installs you need to have your database server hostname, user and password handy, and those all need to be plugged in to:
+
+
+	config.php
+	|-- setup and instructions (must be configured before use)
+
+
+IMPORTANT:
+
+Please heed the warning on each script. They are very dangerous to leave unprotected on a server, as they allow access to your database server to anyone who knows where to look. Protecting each script with HTTP Authentication (http://php.net/manual/en/features.http-auth.php) should be considered mandatory, but even higher security is recommended if possible.

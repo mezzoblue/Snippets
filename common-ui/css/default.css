@@ -66,7 +66,6 @@ li, p, td {
 }
 button {
 	font: 12px sans-serif;
-/* 	text-transform: uppercase; */
 	padding: 6px 12px 5px 12px;
 	box-sizing: content-box;
 	border: 0;
@@ -401,7 +400,7 @@ form div.form-styled {
 		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAABsCAYAAABTnyP6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUpJREFUeNrsmLFKxEAURSdxLRT9hYFgIBbb2dvEwsYmbDdkk8pP2Now/zEQsBMhjYoprJTtbEQIJASSbzBmq8Q3YbMG12TzAe/ChTf3HYaknKsQQs7Bp2RYkZqm6Z6mab2E3MVxPFFhWHLOyz7Q87xS1/WlCvOKMfbquu4W5DgOsW37DcaS1HXdGK43KaXXEDaWcxRFF+1+A4IPfd+ft6AQYi6zdq809K9OLMsyq6oiQRC8wDlpF39BkmXZJYAK/ORTN98CQQcyB3/vAv+VSkYKQQQRRBBBBBFEEEEEEUQQQQRHSb5Rr8BnO7h32QFMRnQA+7IDCDnnxUAHUOi6/iy/sWCMPQx0AI8wfm2ezUmSzEzTnOZ53pwppSQMw0/DMO6aoNMBHPm+v4DoRloIsYDsuK8DmFqWNVt3APdw/hjqANi6A7jt5j8CDABakq8vw1E9tgAAAABJRU5ErkJggg==) no-repeat 100% 3px;
 		margin: 0 10px 0 0;
 	}
-	.form-styled:hover span:after {
+	.form-styled:hover span:after, .form-styled:focus span:after {
 		background-position: 100% -97px;
 	}
 
@@ -417,6 +416,8 @@ form div.form-styled {
 	border-radius: 40px;
 	
 	-webkit-box-shadow: 0 0 35px rgba(0, 0, 0, 0.06);
+	-moz-box-shadow: 0 0 35px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 0 35px rgba(0, 0, 0, 0.06);
 }
 
 

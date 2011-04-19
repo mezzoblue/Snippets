@@ -209,7 +209,7 @@
 	}
 ?>
 
-	<p><strong>Warning:</strong> this script is dangerous to leave sitting on a server as it provides access to your internal DB server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but better security is highly recommended.</p>
+	<p class="warning"><strong>Warning:</strong> this script is dangerous to leave unprotected on a server, as it allows access to your database server to anyone who knows where to look. Protecting this script with <a href="http://php.net/manual/en/features.http-auth.php">HTTP Authentication</a> should be considered mandatory, but even higher security is recommended if possible.</p>
 
 </div>
 

@@ -17,10 +17,10 @@ Javascript
 
 PHP
 	|-- form-to-email: generic configurable form that posts to email
-	|-- mysql-backup: backup and restore a MySQL database to a flat file
+	|-- mysql-backup: backup and restore a MySQL database to a flat file. (Specialized version of mysql-helper)
 	|-- mysql-helper: functions for controlling database creation with PHP
 	|-- smooth-random-int: simple function to return non-repeating random integers (available as Javascript too)
 
 Wordpress
 	|-- subnav-post-keys.php: create a nav listing using a custom field as the page title
-	|-- wordpress-server-transfer: a set of scripts to facilitate easier Wordpress server transfers.
+	|-- wordpress-server-transfer: a set of scripts to facilitate easier Wordpress server transfers. (Customized version of PHP/mysql-backup)

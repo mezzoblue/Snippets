@@ -85,7 +85,7 @@
 			foreach($_POST as $key => $value) {
 				// remove form handling fields
 				if (($key != "sendmail") && ($key != "subject")) {
-					$message .= ucwords($key) . ": " . $value . "\n\n";
+					$message .= str_replace("-", " ", ucwords($key)) . ": " . $value . "\n\n";
 				}
 			}
 			

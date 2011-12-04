@@ -33,10 +33,13 @@
 	// (can add or remove as many as needed below)
 	// currently only supports:
 	//		input type=text
+	//		select
 	//		textarea
 	// shouldn't be hard to repurpose to include any type of form element
 	// just modify includes/fields.php
 	$formFields = array(
+
+		// examples of input type=text
 		"name" => array(
 			"type" => "input",
 			"label" => "Your name:",
@@ -58,11 +61,29 @@
 			"defaultValue" => $emailDefaults["subject"],
 			"required" => false,
 		),
+
+		// example of a textarea
 		"message" => array(
 			"type" => "textarea",
 			"label" => "Message:",
 			"class" => "",
 			"defaultValue" => "",
+			"required" => true,
+		),
+
+		// example of a select
+		"how-many-fingers" => array(
+			"type" => "select",
+			"label" => "How many fingers am I holding up:",
+			"class" => "",
+			"options" => array(
+				1 => "1",
+				"2",
+				"3",
+				"4",
+				"5",
+			),
+			"defaultValue" => 2,
 			"required" => true,
 		),
 	);

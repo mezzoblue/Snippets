@@ -19,7 +19,9 @@ PHP
 	|-- form-to-email: generic configurable form that posts to email
 	|-- mysql-backup: backup and restore a MySQL database to a flat file. (Specialized version of mysql-helper)
 	|-- mysql-helper: functions for controlling database creation with PHP
-	|-- smooth-random-int: simple function to return non-repeating random integers (available as Javascript too)
+	|-- random-daily: simple function to return a different random integer once per day
+	|-- random-smooth: simple function to return sequential non-repeating random integers (available as Javascript too)
+	|-- random-unique: simple function to return an array of non-repeating random integers
 
 Wordpress
 	|-- subnav-post-keys.php: create a nav listing using a custom field as the page title

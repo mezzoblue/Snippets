@@ -39,8 +39,8 @@
 			//
 			// backupFile: the filename of the backed up database file, optional.
 			//
-			"name" => "test-db",
-			"backupFile" => "test-db-backup.sql",
+			"name" => "wordpress-db",
+			"backupFile" => "wordpress-backup.sql",
 
 
 		),

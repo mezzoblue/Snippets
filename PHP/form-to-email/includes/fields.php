@@ -20,6 +20,24 @@
 		if ($data["type"] == "textarea") {
 			echo '						<textarea id="form-' . $field . '" name="' . $field . '" >' . ($_POST[$field] ? $_POST[$field] : $data["value"]) . "</textarea>\n";
 		}
+
+
+		// selects
+		if (($data["type"] == "select") || ($data["type"] == "dropdown")) {
+			echo '						<select id="form-' . $field . '" name="' . $field . '">\n';
+			if (isset($data["options"])) {
+				foreach ($data["options"] as $optionId => $optionValue) {
+					if (isset($data["defaultValue"]) && ($data["defaultValue"] == $optionId)) {
+						$selected = " selected=\"selected\"";
+					} else {
+						$selected = "";
+					}
+					echo "\t\t\t\t\t\t<option value=\"$optionId\"$selected>$optionValue</option>\n";
+				}
+			}
+			echo '						</select>';
+		}
+
 		
 		echo '					</div>' . "\n\n";
 	}

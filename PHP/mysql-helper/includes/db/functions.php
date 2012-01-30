@@ -172,7 +172,7 @@
 		
 		// add primary key, we're assuming it's id
 		$sql .= "PRIMARY KEY (id)";
-		$sql .= ") TYPE=innodb";
+		$sql .= ") ENGINE=innoDB";
 		
  		if (!mysql_query($sql, $connection)) {
  			return 'Error creating table: ' . mysql_error();
